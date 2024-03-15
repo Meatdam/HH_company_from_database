@@ -44,10 +44,13 @@ _______
 ## Запуск проекта
 1. Необходимо склонировать проект в себе в репозиторий(Локально),
 ```
-
+git@github.com:Meatdam/HH_company_from_database.git
 ```
 3. Установть все зависимости с файла 'requarements.txt',
-4. Заполнить корректно в файлах 'DBModule.py' и 'DBManager' в переменную </br>
+```
+pip install -r requirements.txt
+```
+5. Заполнить корректно в файлах 'DBModule.py' и 'DBManager' в переменную 'conn' </br>
 ```
  conn = psycopg2.connect(host='localhost', database=<НАЗВАНИЕ ВАШЕЙ БД>, user=<ИМЯ ПОЛЬЗОВАТЕЛЯ>, password=<ВАШ ПОРОЛЬ ОТ БД>)
     conn.commit()
