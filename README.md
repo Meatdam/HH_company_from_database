@@ -50,7 +50,7 @@ git@github.com:Meatdam/HH_company_from_database.git
 ```
 pip install -r requirements.txt
 ```
-5. Заполнить корректно в файлах 'DBModule.py' и 'DBManager' в переменную 'conn' </br>
+5. Заполнить корректно в файлах 'DBModule.py', 'DBManager', 'user_interaction' в функции 'delete_tables' в переменную 'conn' </br>
 ```
 conn = psycopg2.connect(host='localhost', database=<НАЗВАНИЕ ВАШЕЙ БД>, user=<ИМЯ ПОЛЬЗОВАТЕЛЯ>, password=<ВАШ ПОРОЛЬ ОТ БД>)
 conn.commit()
