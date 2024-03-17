@@ -1,10 +1,8 @@
-import psycopg2
+from config import connection
 
 
 class DBManager:
-
-    conn = psycopg2.connect(host='localhost', database='hh_vacancies', user='postgres', password='1234')
-    conn.commit()
+    conn = connection
 
     def get_companies_and_vacancies_count(self) -> None:
         """

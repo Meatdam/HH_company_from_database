@@ -1,6 +1,6 @@
 from src.hh_company_vacancy_parser import HHVacancionParsing
 from src.DB_module import DBModule
-import psycopg2
+from config import connection
 
 
 def user_interaction(value) -> None:
@@ -20,8 +20,7 @@ def delete_tables() -> None:
     Удаление таблиц из быза данных
     :return: None
     """
-    conn = psycopg2.connect(host='localhost', database='hh_vacancies', user='postgres', password='1234')
-    conn.commit()
+    conn = connection
     with conn:
         with conn.cursor() as cursor:
             cursor.execute('DROP TABLE vacancies; DROP TABLE employer')

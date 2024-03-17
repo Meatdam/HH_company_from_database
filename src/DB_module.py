@@ -1,10 +1,9 @@
 from src.hh_company_vacancy_parser import HHVacancionParsing
-import psycopg2
+from config import connection
 
 
 class DBModule:
-    conn = psycopg2.connect(host='localhost', database='hh_vacancies', user='postgres', password='1234')
-    conn.commit()
+    conn = connection
 
     def create_tables(self) -> None:
         """
@@ -44,11 +43,8 @@ class DBModule:
                 for vacancy in vacancies:
                     cur.execute("INSERT INTO vacancies VALUES (%s, %s, %s, %s, %s, %s)",
                                 (vacancy["id"], vacancy["employer"], vacancy["name"], vacancy["salary_from"],
-                                 vacancy["salary_to"], vacancy["url"], ))
-
-        self.conn.close()
+                                 vacancy["salary_to"], vacancy["url"],))
 
 
 if __name__ == '__main__':
     hh = DBModule()
-
