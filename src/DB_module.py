@@ -1,9 +1,14 @@
+import psycopg2
+
 from src.hh_company_vacancy_parser import HHVacancionParsing
-from config import connection
+from config import config
 
 
 class DBModule:
-    conn = connection
+
+    def __init__(self, db_name):
+        self.db_name = db_name
+        self.conn = psycopg2.connect(dbname=self.db_name, **config())
 
     def create_tables(self) -> None:
         """
@@ -47,4 +52,4 @@ class DBModule:
 
 
 if __name__ == '__main__':
-    hh = DBModule()
+    hh = DBModule('python')

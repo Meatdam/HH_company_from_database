@@ -1,10 +1,13 @@
-from utils.user_interaction import user_interaction, delete_tables
+from utils.user_interaction import user_interaction, delete_database, create_database
 from src.DBManager import DBManager
 
-db_manager = DBManager()
+
+db_name = input('Введите название быза данных\n')
+create_database(db_name)
+db_manager = DBManager(db_name)
 user_input = input("Введите название компаний через запятую, для просмотра!\n"
                    "Если не указать вакансии, по умолчанию программа вернет 10 первых\n").split(',')
-user_interaction(user_input)
+user_interaction(user_input, db_name)
 print('Список Компаний сохранен в базе данных!\n')
 
 try:
@@ -43,6 +46,7 @@ try:
         else:
             break
 finally:
+    db_manager.conn.close()
     print("Удалание данных с базы данных!\n")
-    delete_tables()
+    delete_database(db_name)
     print("Всего Хорошего!")
