@@ -1,8 +1,13 @@
-from config import connection
+import psycopg2
+
+from config import config
 
 
 class DBManager:
-    conn = connection
+
+    def __init__(self, db_name):
+        self.db_name = db_name
+        self.conn = psycopg2.connect(dbname=self.db_name, **config())
 
     def get_companies_and_vacancies_count(self) -> None:
         """
@@ -69,5 +74,5 @@ class DBManager:
 
 
 if __name__ == '__main__':
-    result = DBManager()
+    result = DBManager('python')
     result.get_vacancies_with_keyword('Руководитель')
