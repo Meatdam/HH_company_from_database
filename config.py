@@ -1,5 +1,5 @@
 from configparser import ConfigParser
-from path_databse_ini import FILE
+from path_database_ini import FILE
 
 
 def config(filename=FILE, section="postgresql"):
