@@ -1,32 +1,49 @@
+import psycopg2
 from src.hh_company_vacancy_parser import HHVacancionParsing
 from src.DB_module import DBModule
-from config import connection
+from config import config
 
 
-def user_interaction(value) -> None:
+def user_interaction(value, db_name) -> None:
     """
     Взаимодействия с пользователем, получает данные от пользователя, записывает в базу даннных
     и сортирует.
     :return: None
     """
     HHVacancionParsing(value)
-    module = DBModule()
+    module = DBModule(db_name)
     module.create_tables()
     module.full_tables(value)
 
 
-def delete_tables() -> None:
+def delete_database(database_name: str) -> None:
     """
-    Удаление таблиц из быза данных
+    Удаление бызы данных
     :return: None
     """
-    conn = connection
-    with conn:
-        with conn.cursor() as cursor:
-            cursor.execute('DROP TABLE vacancies; DROP TABLE employer')
-            conn.commit()
+    conn = psycopg2.connect(dbname='postgres', **config())
+    conn.autocommit = True
+    cur = conn.cursor()
+
+    cur.execute(f'DROP DATABASE {database_name}')
+
+    cur.close()
+    conn.close()
+
+
+def create_database(database_name: str) -> None:
+    """
+    Создание базы данных и таблиц для сохранения данных о каналах и видео
+    """
+    conn = psycopg2.connect(dbname='postgres', **config())
+    conn.autocommit = True
+    cur = conn.cursor()
+
+    cur.execute(f'CREATE DATABASE {database_name}')
+
+    cur.close()
+    conn.close()
 
 
 if __name__ == '__main__':
-    user_input = input('').split()
-    user_interaction(user_input)
+    delete_database('python')
