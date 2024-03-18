@@ -2,7 +2,7 @@ from utils.user_interaction import user_interaction, delete_database, create_dat
 from src.DBManager import DBManager
 
 
-db_name = input('Введите название быза данных')
+db_name = input('Введите название быза данных\n')
 create_database(db_name)
 db_manager = DBManager(db_name)
 user_input = input("Введите название компаний через запятую, для просмотра!\n"
