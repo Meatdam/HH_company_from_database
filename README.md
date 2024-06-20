@@ -49,7 +49,7 @@ _______
 Чтобы проект корректно заработал на вашем ПК необходимо: 
 1. Клонировать проект себе в репозиторий и локально на ПК
 ```
-git clone git@github.com:Meatdam/bank_operations.git
+git@github.com:Meatdam/HH_company_from_database.git
 ```
 2. Установить виртуальное окружение `venv`
 ```
